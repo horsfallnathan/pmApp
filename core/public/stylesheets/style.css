@@ -1,8 +1,20 @@
+* {
+  margin: 0;
+  padding: 0; }
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00B7FF; }
+  color: #00b7ff; }
+
+.signup-container {
+  width: 40vw;
+  height: 60vh;
+  position: relative;
+  top: 20%;
+  left: 50%;
+  background-color: lightcyan; }
 
 /*# sourceMappingURL=style.css.map */
