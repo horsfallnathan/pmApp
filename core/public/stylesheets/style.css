@@ -1,13 +1,17 @@
 * {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  padding: 0;
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
 
 a {
-  color: #00b7ff; }
+  color: #00b7ff;
+}
 
 .signup-container {
   width: 40vw;
@@ -15,6 +19,18 @@ a {
   position: relative;
   top: 20%;
   left: 50%;
-  background-color: lightcyan; }
+  background-color: lightcyan;
+}
+.body-container {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: calc((100vw - 960px) / 2);
+  padding-right: calc((100vw - 960px) / 2);
+}
+
+.welcome-nav {
+  display: flex;
+  justify-content: space-between;
+}
 
 /*# sourceMappingURL=style.css.map */

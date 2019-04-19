@@ -4,7 +4,8 @@
 }
 
 body {
-  padding: 50px;
+  padding: 0;
+  margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -19,4 +20,16 @@ a {
   top: 20%;
   left: 50%;
   background-color: lightcyan;
+}
+
+.body-container {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: calc((100vw - 960px) / 2);
+  padding-right: calc((100vw - 960px) / 2);
+}
+
+.welcome-nav {
+  display: flex;
+  justify-content: space-between;
 }
