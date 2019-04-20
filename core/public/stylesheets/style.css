@@ -8,7 +8,7 @@ body {
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif; }
 
 a {
-  color: #00b7ff; }
+  color: inherit; }
 
 nav {
   background-color: #fff; }
@@ -64,5 +64,13 @@ nav a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; }
+
+.pmApp-button {
+  color: white;
+  background-color: #00b7ff;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */
