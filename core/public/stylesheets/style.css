@@ -30,13 +30,6 @@ nav a {
   padding-left: calc((100vw - 960px) / 2);
   padding-right: calc((100vw - 960px) / 2); }
 
-.welcome-body-container {
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: calc((100vw - 960px) / 2);
-  padding-right: calc((100vw - 960px) / 2);
-  height: 100vh; }
-
 .banner-text {
   width: 100%;
   padding: 1.5rem; }
@@ -53,6 +46,11 @@ nav a {
     .banner-img {
       max-width: 50%;
       padding: 1.5rem; } }
+
+.pmapp-nav {
+  position: absolute;
+  top: 0;
+  left: 0; }
 
 .welcome-nav {
   display: flex;
@@ -72,5 +70,8 @@ nav a {
   padding: 1rem;
   margin: 1.5rem 0;
   display: inline-block; }
+
+nav ul a:last-child {
+  padding-right: 0; }
 
 /*# sourceMappingURL=style.css.map */

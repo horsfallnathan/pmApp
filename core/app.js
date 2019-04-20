@@ -73,10 +73,14 @@ app.use(
 app.use(flash());
 require('./passport')(app);
 
+// Configure route paths
 const index = require('./routes/index');
 app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
+
+const signedInRoutes = require('./routes/signedIn');
+app.use('/', signedInRoutes);
 
 module.exports = app;
