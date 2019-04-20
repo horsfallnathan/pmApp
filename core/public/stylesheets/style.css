@@ -5,10 +5,16 @@
 body {
   padding: 0;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif; }
 
 a {
   color: #00b7ff; }
+
+nav {
+  background-color: #fff; }
+
+nav a {
+  color: #3076a1 !important; }
 
 .signup-container {
   width: 40vw;
@@ -24,8 +30,39 @@ a {
   padding-left: calc((100vw - 960px) / 2);
   padding-right: calc((100vw - 960px) / 2); }
 
+.welcome-body-container {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: calc((100vw - 960px) / 2);
+  padding-right: calc((100vw - 960px) / 2);
+  height: 100vh; }
+
+.banner-text {
+  width: 100%;
+  padding: 1.5rem; }
+  @media (min-width: 992px) {
+    .banner-text {
+      max-width: 50%;
+      padding: 1.5rem; } }
+
+.banner-img {
+  width: 100%;
+  max-width: 40rem;
+  padding: 1.5rem; }
+  @media (min-width: 992px) {
+    .banner-img {
+      max-width: 50%;
+      padding: 1.5rem; } }
+
 .welcome-nav {
   display: flex;
   justify-content: space-between; }
+
+.landing-banner {
+  height: 100vh;
+  padding-top: 10rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
 
 /*# sourceMappingURL=style.css.map */
