@@ -4,7 +4,14 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema(
     {
         username: String,
-        password: String
+        password: String,
+
+        role: {
+            type: String,
+            required: true,
+            enum: ['Admin', 'Project Leader', 'Team Member'],
+            default: 'Admin'
+        }
     },
     {
         timestamps: {
