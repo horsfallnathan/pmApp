@@ -26,7 +26,7 @@ router.get("/signup", (req, res, next) => {
 })
 
 router.post("/signup", (req, res, next) => {
-  const { firstName, lastName, email, username, password } = req.body.username
+  const { firstName, lastName, email, username, password } = req.body
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" })
     return
