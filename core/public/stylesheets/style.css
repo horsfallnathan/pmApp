@@ -88,4 +88,18 @@ nav a {
 nav ul a:last-child {
   padding-right: 0; }
 
+.chart-box {
+  width: 100%;
+  padding: 1.5rem; }
+  @media (min-width: 992px) {
+    .chart-box {
+      max-width: 50%;
+      padding: 1.5rem; } }
+
+.flexed-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center; }
+
 /*# sourceMappingURL=style.css.map */
