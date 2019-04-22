@@ -19,11 +19,11 @@ router.get('/dashboard', authenticationCheck, (req, res, next) => {
     res.render('signedIn/dashboard');
 });
 
-router.get('/addProject', authenticationCheck, (req, res, next) => {
+router.get('/add-project', authenticationCheck, (req, res, next) => {
     res.render('signedIn/add-project');
 });
 
-router.post('/rooms/add', authenticationCheck, (req, res, next) => {
+router.post('/addProject', authenticationCheck, (req, res, next) => {
     const { projectName, task, assignedUser, description, weight } = req.body;
     console.log(req.user._id);
     Project.create({ projectName, task, assignedUser, description, weight, owner: req.user._id })
@@ -34,5 +34,11 @@ router.post('/rooms/add', authenticationCheck, (req, res, next) => {
             console.error('Error while adding a new project', err);
         });
 });
+
+// router.get('/getTasks', (req, res, next) => {
+//     Project.find().then(data => {
+//         res.json(data);
+//     });
+// });
 
 module.exports = router;
