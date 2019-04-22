@@ -1,13 +1,43 @@
 <div class="signup-container">
+  {{!-- <div class="signup-img">
+    <img
+      src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+      alt="">
+  </div> --}}
   <form action="/auth/signup" method="POST" id="form-container">
-    <label for="username">Username</label>
-    <input id="username" type="text" name="username" placeholder="JonSnow">
+    <div class="first-name-container">
+      <label for="firstName">First Name</label>
+      <input id="firstNameInput" type="text" name="firstName" placeholder="First Name">
+    </div>
+
+    <br>
+    <div class="last-name-container">
+      <label for="lastName">Last Name</label>
+      <input id="lastNameInput" type="text" name="lastName" placeholder="Last Name">
+    </div>
+
+    <br>
+    <div class="email-container">
+      <label for="email">Email</label>
+      <input id="emailInput" type="text" name="email" placeholder="Enter email">
+    </div>
 
     <br>
 
-    <label for="password">Password</label>
-    <input id="password" type="password" name="password" placeholder="Your password">
+    <div class="username-container">
+      <label for="username">Username</label>
+      <input id="usernameInput" type="text" name="username" placeholder="Enter Username">
+    </div>
+
     <br>
+
+    <div class="password-container">
+      <label for="password">Password</label>
+      <input id="password" type="password" name="password" placeholder="Enter password">
+    </div>
+
+    <br>
+
     {{#if message }}
     <div class="error-message">{{ message }}</div>
     {{/if}}

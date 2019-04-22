@@ -22,12 +22,11 @@ router.post(
 )
 
 router.get("/signup", (req, res, next) => {
-  res.render("auth/signup")
+  res.render("auth/signup", { layout: "welcome-layout" })
 })
 
 router.post("/signup", (req, res, next) => {
-  const username = req.body.username
-  const password = req.body.password
+  const { firstName, lastName, email, username, password } = req.body.username
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" })
     return
