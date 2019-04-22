@@ -65,9 +65,26 @@ router.post("/signup", (req, res, next) => {
   })
 })
 
+router.get("/github", passport.authenticate("github"))
+router.get(
+  "/github/callback",
+  passport.authenticate("github", {
+    successRedirect: "/",
+    failureRedirect: "/auth/login"
+  })
+)
+
+router.get("/linkedin", passport.authenticate("linkedin"))
+router.get(
+  "/linkedin/callback",
+  passport.authenticate("linkedin", {
+    successRedirect: "/",
+    failureRedirect: "/auth/login"
+  })
+)
+
 router.get("/logout", (req, res) => {
   req.logout()
   res.redirect("/")
 })
-
 module.exports = router
