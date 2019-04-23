@@ -57,12 +57,13 @@ router.post("/signup", (req, res, next) => {
     newUser
       .save()
       .then(user => {
+        // log in a newly signed up user
         req.login(user, () => {
           res.redirect("/dashboard")
         })
       })
       .catch(err => {
-        res.render("auth/signup", { message: "Something went wrong" })
+        res.render("auth/signup", { message: "Something went wrong", err })
       })
   })
 })
