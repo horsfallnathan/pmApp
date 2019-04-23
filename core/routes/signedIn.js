@@ -20,25 +20,45 @@ router.get('/dashboard', authenticationCheck, (req, res, next) => {
     res.render('signedIn/dashboard');
 });
 
-router.get('/add-project', authenticationCheck, (req, res, next) => {
-    res.render('signedIn/add-project');
-});
-
-router.post('/addProject', authenticationCheck, (req, res, next) => {
+let inFormData;
+router.post('/api/addProject', authenticationCheck, (req, res, next) => {
+    console.log('Creating the project');
     const { inputTitle } = req.body;
-    console.log(inputTitle);
-    Project.create({ projectName: inputTitle, assignedTo: req.user._id })
+    return Project.create({ projectName: inputTitle, assignedTo: [req.user._id] })
         .then(project => {
-            id = project._id;
-            content = project.inputTitle;
-            console.log('added');
-            res.render('signedIn/add-project', { id, content });
+            inFormData = res.json(project);
+            return inFormData;
         })
         .catch(err => {
             console.error('Error while adding a new project', err);
         });
 });
 
+router.post('/api/addTask', authenticationCheck, (req, res, next) => {
+    console.log('got here');
+    console.log(inFormData);
+    const { taskTitle, description, weight, status, project = inFormData.data._id } = req.body;
+    Task.create({
+        title: taskTitle,
+        description: description,
+        assignedTo: req.user._id,
+        weight: weight,
+        status: status,
+        project: project
+    })
+        .then(project => {
+            console.log('creating the task');
+            // res.redirect('/add-project');
+        })
+        .catch(err => {
+            console.error('Error while adding a new project', err);
+        });
+    // const { newTask } = req.body;
+    // console.log(newTask);
+});
+router.get('/add-project', authenticationCheck, (req, res, next) => {
+    res.render('signedIn/add-project');
+});
 router.get('/api/project', (req, res, next) => {
     Project.find().then(data => res.json(data));
 });
