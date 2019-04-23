@@ -10,11 +10,12 @@ router.get("/news", (req, res, next) => {
       // sources: "bbc-news, financial-times",
       q: query.keyword,
       category: query.category,
-      language: "en"
+      language: "en",
+      excludeDomains: "dailymail.co.uk"
       // country: "uk"
     })
     .then(response => {
-      console.log(response)
+      // console.log(response.articles[0].url)
       res.render("signedIn/news", { response })
     })
     .catch(err => {

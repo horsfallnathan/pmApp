@@ -4,29 +4,36 @@
   <label for="keyword"></label>
   <input type="text" name="keyword" placeholder="Keyword">
 
-  <label for="category"></label>
-  <input type="text" name="category" placeholder="Category">
+  <div class="category-input">
+    <select name="category" id="cat-select">
+      <option value="">Choose a category</option>
+      <option value="business">Business</option>
+      <option value="entertainment">Entertainment</option>
+      <option value="general">General</option>
+      <option value="health">Health</option>
+      <option value="science">Science</option>
+      <option value="sports">Sports</option>
+      <option value="technology">Technology</option>
+    </select>
+  </div>
+
+  <label for="category">This shows</label>
 
   <button type="submit">Search for news</button>
 </form>
 
-{{response.articles.[0].content}}
-
 {{#each response.articles}}
+<br><br>
+<img src="{{this.urlToImage}}" width="300px" alt="Article image">
 <br><br>
 {{this.source.name}}
 <br><br>
-{{this.author}}
-<br><br>
 {{this.title}}
+<br><br>
+{{this.description}}
+<br><br>
+<button><a target="_blank" href="{{this.url}}">Read more</a></button>
 {{/each}}
 
-{{!-- {{#each data.body.artists.items}}
-{{this.name}}
-<img src={{this.images.[0].url}} alt="" class="card-img-top">
-<button><a href="/albums/{{this.id}}">View Albums</a></button>
-{{/each}} --}}
-
-
-<br>
-<footer>Powered by <a href="https://newsapi.org/">NewsAPI.org</a></footer>
+<br><br>
+<footer>Powered by <a href=" https://newsapi.org/">NewsAPI.org </a> </footer>
