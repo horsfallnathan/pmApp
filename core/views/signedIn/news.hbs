@@ -1,3 +1,39 @@
 <h2>News</h2>
 
-<footer>Powered by <a href="www.newsapi.org">NewsAPI.org</a></footer>
+<form action="/news" method="get">
+  <label for="keyword"></label>
+  <input type="text" name="keyword" placeholder="Keyword">
+
+  <div class="category-input">
+    <select name="category" id="cat-select">
+      <option value="">Choose a category</option>
+      <option value="business">Business</option>
+      <option value="entertainment">Entertainment</option>
+      <option value="general">General</option>
+      <option value="health">Health</option>
+      <option value="science">Science</option>
+      <option value="sports">Sports</option>
+      <option value="technology">Technology</option>
+    </select>
+  </div>
+
+  <label for="category">This shows</label>
+
+  <button type="submit">Search for news</button>
+</form>
+
+{{#each response.articles}}
+<br><br>
+<img src="{{this.urlToImage}}" width="300px" alt="Article image">
+<br><br>
+{{this.source.name}}
+<br><br>
+{{this.title}}
+<br><br>
+{{this.description}}
+<br><br>
+<button><a target="_blank" href="{{this.url}}">Read more</a></button>
+{{/each}}
+
+<br><br>
+<footer>Powered by <a href=" https://newsapi.org/">NewsAPI.org </a> </footer>

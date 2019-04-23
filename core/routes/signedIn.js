@@ -53,8 +53,6 @@ router.post('/api/addTask', authenticationCheck, (req, res, next) => {
         .catch(err => {
             console.error('Error while adding a new project', err);
         });
-    // const { newTask } = req.body;
-    // console.log(newTask);
 });
 router.get('/add-project', authenticationCheck, (req, res, next) => {
     res.render('signedIn/add-project');

@@ -29,7 +29,8 @@ const addNewTaskForm = `
 <label for="weight">Task Weight</label>
 <button id="saveTask" type="submit" class="btn" name="saveTask">Save Task</button>
 </form>
-`;
+<button id="newAddTask" class="btn disabled">Add Task</button>
+</div>`;
 
 document.addEventListener(
     'DOMContentLoaded',
@@ -90,3 +91,7 @@ document.getElementById('newAddTask').onclick = function() {
         document.getElementById('newAddTask').style.display = 'block';
     };
 };
+
+$(document).ready(function() {
+    $('select').formSelect();
+});

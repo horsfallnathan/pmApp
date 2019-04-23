@@ -8,13 +8,13 @@ const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 
 router.get("/login", (req, res, next) => {
-  res.render("auth/login", { message: req.flash("error") })
+  res.render("auth/login", { message: req.flash("error"), layout: "welcome-layout" })
 })
 
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/dashboard",
     failureRedirect: "/auth/login",
     failureFlash: true,
     passReqToCallback: true
@@ -56,11 +56,14 @@ router.post("/signup", (req, res, next) => {
 
     newUser
       .save()
-      .then(() => {
-        res.redirect("/")
+      .then(user => {
+        // log in a newly signed up user
+        req.login(user, () => {
+          res.redirect("/dashboard")
+        })
       })
       .catch(err => {
-        res.render("auth/signup", { message: "Something went wrong" })
+        res.render("auth/signup", { message: "Something went wrong", err })
       })
   })
 })
@@ -69,7 +72,7 @@ router.get("/github", passport.authenticate("github"))
 router.get(
   "/github/callback",
   passport.authenticate("github", {
-    successRedirect: "/",
+    successRedirect: "/dashboard",
     failureRedirect: "/auth/login"
   })
 )
@@ -78,7 +81,7 @@ router.get("/linkedin", passport.authenticate("linkedin"))
 router.get(
   "/linkedin/callback",
   passport.authenticate("linkedin", {
-    successRedirect: "/",
+    successRedirect: "/dashboard",
     failureRedirect: "/auth/login"
   })
 )
@@ -87,4 +90,5 @@ router.get("/logout", (req, res) => {
   req.logout()
   res.redirect("/")
 })
+
 module.exports = router
