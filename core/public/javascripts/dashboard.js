@@ -49,13 +49,11 @@ class DATAHandler {
         this.BASE_URL = baseURL;
     }
     postProjectTitle(inputTitle) {
-        console.log(inputTitle);
         return axios.post(`${baseURL}/api/addProject`, inputTitle).then(response => {
             return response;
         });
     }
     postNewTask(formData) {
-        console.log('hello from postnewtask dashboard.js');
         return axios.post(`${baseURL}/api/addTask`, formData).then(response => {
             return response;
         });

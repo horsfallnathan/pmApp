@@ -22,7 +22,6 @@ router.get('/dashboard', authenticationCheck, (req, res, next) => {
 
 let inFormData;
 router.post('/api/addProject', authenticationCheck, (req, res, next) => {
-    console.log('Creating the project');
     const { inputTitle } = req.body;
     return Project.create({ projectName: inputTitle, assignedTo: [req.user._id] })
         .then(project => {
@@ -35,8 +34,6 @@ router.post('/api/addProject', authenticationCheck, (req, res, next) => {
 });
 
 router.post('/api/addTask', authenticationCheck, (req, res, next) => {
-    console.log('got here');
-    console.log(inFormData);
     const { taskTitle, description, weight, status, project = inFormData.data._id } = req.body;
     Task.create({
         title: taskTitle,
@@ -46,10 +43,7 @@ router.post('/api/addTask', authenticationCheck, (req, res, next) => {
         status: status,
         project: project
     })
-        .then(project => {
-            console.log('creating the task');
-            // res.redirect('/add-project');
-        })
+        .then(project => {})
         .catch(err => {
             console.error('Error while adding a new project', err);
         });

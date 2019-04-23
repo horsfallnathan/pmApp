@@ -29,7 +29,6 @@ const addNewTaskForm = `
 <label for="weight">Task Weight</label>
 <button id="saveTask" type="submit" class="btn" name="saveTask">Save Task</button>
 </form>
-<button id="newAddTask" class="btn disabled">Add Task</button>
 </div>`;
 
 document.addEventListener(
@@ -64,6 +63,7 @@ document.getElementById('projectTitle').onsubmit = function(event) {
         currentProjectId = response.data._id;
     });
     document.querySelectorAll('#newAddTask')[0].classList.toggle('disabled');
+    document.querySelector('button[name="saveProjectTitle"]').style.display = 'none';
     // console.log(projectId);
 };
 document.getElementById('newAddTask').onclick = function() {
@@ -89,6 +89,7 @@ document.getElementById('newAddTask').onclick = function() {
         <p>Weight: ${formData.weight}</p>
         <p>Status: ${formData.status}</p>`;
         document.getElementById('newAddTask').style.display = 'block';
+        document.getElementById('saveProject').classList.remove('display-hide');
     };
 };
 
