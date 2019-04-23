@@ -16,21 +16,42 @@
 
 // const getDashboardData = ({ _id }) => {};
 
+// For Autocomplete
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     var elems = document.querySelectorAll('.autocomplete');
+//     data = axios.get(`/getUsers`).then(data => {
+//         return data;
+//     });
+//     console.log(data);
+//     var instances = M.Autocomplete.init(elems, data);
+// });
+
 // const searchCoinData = (aNewFromDate = '2013-09-01', aNewToDate = '2013-09-05') => {
 //     axios
-//         .get(
-//             `https://api.coindesk.com/v1/bpi/historical/close.json?start=${aNewFromDate}&end=${aNewToDate}`
-//         )
-//         // axios
-//         //       .get(`http://api.coindesk.com/v1/bpi/historical/close.json`)
+//         .get(`/getTasks`)
 //         .then(response => {
-//             myData = response.data;
-//             const label = Object.keys(myData.bpi);
-//             const data = Object.values(myData.bpi);
-//             printCharts(label, data);
+//             console.log(response);
+//             // myData = response.data;
+//             // const label = Object.keys(myData.bpi);
+//             // const data = Object.values(myData.bpi);
+//             // printCharts(label, data);
 //         })
 //         .catch(err => {
 //             console.log(err);
 //         });
 // };
 // searchCoinData();
+
+const baseURL = 'http://localhost:3000';
+class DATAHandler {
+    constructor(baseURL) {
+        this.BASE_URL = baseURL;
+    }
+    postProjectTitle(inputTitle) {
+        return axios.post(`${baseURL}/addProject`, { inputTitle }).then(response => {
+            const { projectTitle } = response;
+            return projectTitle;
+        });
+    }
+}
