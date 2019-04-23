@@ -1,15 +1,80 @@
-<form action="/addProject" method="post">
-  <label for="projectName">Project Title</label>
-  <input type="text" name="projectName">
-  <form action="/addTask" method="post">
+{{#if id}}
+<h1>{{content}}</h1>
+{{else}}
+<h1>Project Title</h1>
+{{/if}}
 
+<div class="flexed-row">
+  <form action="" method="POST" id="projectTitle">
+    <input type="text" name="projectName" required id="projectName">
+    <label for="projectName">Project Title</label>
+    </button>
+    <button class="btn" type="submit" name="saveProject">Save Project
   </form>
-  <label for="author">Author</label>
-  <input type="text" name="author">
-  <label for="description">Description</label>
-  <input type="text" name="description">
-  <label for="rating">Rating</label>
-  <input type="number" name="rating">
+  <button id="newAddTask" class="btn disabled">Add Task</button>
+</div>
+<div id="formContainer">
 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- 
+<form action="/addProject" method="post">
+  <input type="text" name="projectName">
+  <label for="projectName">Project Title</label>
+  <div class="add-task flexed-row">
+    <input type="text" name="taskTitle">
+    <label for="taskTitle">Task</label>
+    <p>
+      <label>
+        <input name="status" type="radio" value="Todo" checked />
+        <span>To do</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input name="status" type="radio" value="Ongoing" />
+        <span>Doing</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input name="status" type="radio" value="Completed" />
+        <span>Completed</span>
+      </label>
+    </p>
+    <select id="assignedTo">
+      {{#each User}}
+      <option value="">{{User.name}}</option>
+      {{/each}}
+    </select>
+    <label for="assignedTo">Assign Team Member</label>
+    <textarea id="description" name="description" rows="5">
+    </textarea>
+    <label for="description">Task Description</label>
+    <input type="number" name="weight">
+    <label for="weight">Task Weight</label>
+  </div>
   <button type="submit">Add</button>
-</form>
+</form> --}}

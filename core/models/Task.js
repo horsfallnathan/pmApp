@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const taskSchema = new Schema(
     {
         title: String,
-        Description: String,
+        description: String,
         assignedTo: [
             {
                 type: Schema.Types.ObjectId,
@@ -25,5 +25,5 @@ const taskSchema = new Schema(
     }
 );
 
-const Task = mongoose.model('Project', taskSchema);
+const Task = mongoose.model('Task', taskSchema);
 module.exports = Task;
