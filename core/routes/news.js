@@ -11,7 +11,7 @@ router.get("/news", (req, res, next) => {
       category: query.category,
       language: "en"
       // sources: "bbc-news, financial-times",
-      // country: "uk"
+      // country: "gb"
     })
     .then(response => {
       res.render("signedIn/news", { response })
