@@ -8,8 +8,7 @@ router.get("/news", (req, res, next) => {
   newsapi.v2
     .topHeadlines({
       q: query.keyword,
-      category: query.category,
-      language: "en"
+      category: query.category
       // sources: "bbc-news, financial-times",
       // country: "gb"
     })
@@ -25,8 +24,9 @@ router.get("/news", (req, res, next) => {
 router.get("/api/news", (req, res, next) => {
   newsapi.v2
     .topHeadlines({
-      category: "general",
-      country: "us"
+      sources: "bbc-news, financial-times, nbc-news, cnn, the-hill, cnbc, independent"
+      // category: "general",
+      // country: "us"
     })
     .then(response => {
       res.json(response)
