@@ -22,8 +22,11 @@ const authenticationCheck = (req, res, next) => {
 router.get("/dashboard", authenticationCheck, (req, res, next) => {
   res.render("signedIn/dashboard")
 })
-router.get(`/project/:name`, authenticationCheck, (req, res, next) => {
-  res.render("signedIn/project")
+router.get(`/project/:projectId`, authenticationCheck, (req, res, next) => {
+  const { projectId } = req.params
+  Project.find({ id: projectId }).then(data => {
+    res.render("signedIn/project", data)
+  })
 })
 
 router.get("/api/allProjectStatus", authenticationCheck, (req, res, next) => {
@@ -41,25 +44,9 @@ router.get("/view-project", authenticationCheck, (req, res, next) => {
     .populate({
       path: "tasks",
       model: "Task"
-      // populate: {
-      // path: 'friends',
-      // model: 'User'
     })
     .then(data => {
-      // const data = data;
-      // let newdata = data;
-      // let dataList = [];
-      // for (i = 0; i < newdata.length; i++) {
-      //     dataList.push({
-      //         user: newdata[i].assignedTo,
-      //         name: newdata[i].projectName,
-      //         weight: newdata[i].weight,
-      //         tasks: newdata[i].tasks
-      //     });
-      // }
-      // console.log({ dataList }, ':datalist');
       res.render("signedIn/view-projects", { data })
-      console.log({ data })
     })
 })
 
@@ -85,6 +72,8 @@ router.post("/api/addTask", authenticationCheck, (req, res, next) => {
     weight: weight,
     status: status,
     project: project
+  }).then(data => {
+    Project.findOneAndUpdate({ _id: project }, { $push: { tasks: data.id } }).then({})
   })
 })
 router.get("/add-project", authenticationCheck, (req, res, next) => {
