@@ -93,6 +93,7 @@ document.getElementById('newAddTask').onclick = function() {
     };
 };
 
-// $(document).ready(function() {
-//     $('select').formSelect();
-// });
+// To display news category dropdown
+$(document).ready(function() {
+    $('select').formSelect();
+});

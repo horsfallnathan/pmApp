@@ -7,15 +7,13 @@ router.get("/news", (req, res, next) => {
   const query = req.query
   newsapi.v2
     .topHeadlines({
-      // sources: "bbc-news, financial-times",
       q: query.keyword,
       category: query.category,
-      language: "en",
-      excludeDomains: "dailymail.co.uk"
+      language: "en"
+      // sources: "bbc-news, financial-times",
       // country: "uk"
     })
     .then(response => {
-      // console.log(response.articles[0].url)
       res.render("signedIn/news", { response })
     })
     .catch(err => {
