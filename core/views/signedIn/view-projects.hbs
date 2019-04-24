@@ -1,0 +1,10 @@
+<h1>Your Current Projects</h1>
+<input type="text" name="searchProject" id="searchProject" placeholder="Start typing...">
+<label for="searchProject">Search Project</label>
+<div class="project-list">
+  {{#each data}}
+  <p>Project Name: {{projectName}}</p>
+  <p>Number of Tasks: {{tasks.length}}</p>
+  <a href="/project/${{projectName}}">View Project</a>
+  {{/each}}
+</div>

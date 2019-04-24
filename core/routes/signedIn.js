@@ -19,6 +19,46 @@ const authenticationCheck = (req, res, next) => {
 router.get('/dashboard', authenticationCheck, (req, res, next) => {
     res.render('signedIn/dashboard');
 });
+router.get(`/project/:name`, authenticationCheck, (req, res, next) => {
+    res.render('signedIn/project');
+});
+
+router.get('/api/allProjectStatus', authenticationCheck, (req, res, next) => {
+    console.log('got here');
+    let userID = req.user._id;
+    return Task.find({ assignedTo: userID }).then(data => {
+        return res.json(data);
+    });
+});
+
+router.get('/view-project', authenticationCheck, (req, res, next) => {
+    let userID = req.user._id;
+    console.log(userID);
+    Project.find({ assignedTo: userID })
+        .populate({
+            path: 'tasks',
+            model: 'Task'
+            // populate: {
+            // path: 'friends',
+            // model: 'User'
+        })
+        .then(data => {
+            // const data = data;
+            // let newdata = data;
+            // let dataList = [];
+            // for (i = 0; i < newdata.length; i++) {
+            //     dataList.push({
+            //         user: newdata[i].assignedTo,
+            //         name: newdata[i].projectName,
+            //         weight: newdata[i].weight,
+            //         tasks: newdata[i].tasks
+            //     });
+            // }
+            // console.log({ dataList }, ':datalist');
+            res.render('signedIn/view-projects', { data });
+            console.log({ data });
+        });
+});
 
 let inFormData;
 router.post('/api/addProject', authenticationCheck, (req, res, next) => {
