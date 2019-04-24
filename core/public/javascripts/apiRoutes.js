@@ -18,22 +18,3 @@ class DATAHandler {
     })
   }
 }
-
-// router.get("/api/project", (req, res, next) => {
-//   Project.find().then(data => res.json(data))
-// })
-
-// // NewsAPI for the widget
-// router.get("/api/news", (req, res, next) => {
-//   newsapi.v2
-//     .topHeadlines({
-//       category: "general",
-//       country: "us"
-//     })
-//     .then(response => {
-//       res.json(response)
-//     })
-//     .catch(err => {
-//       console.error("Could not fetch news", err)
-//     })
-// })
