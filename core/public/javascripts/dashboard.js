@@ -43,15 +43,15 @@
 // };
 // searchCoinData();
 
-const baseURL = 'http://localhost:3000';
+const baseURL = "http://localhost:3000"
 class DATAHandler {
-    constructor(baseURL) {
-        this.BASE_URL = baseURL;
-    }
-    postProjectTitle(inputTitle) {
-        return axios.post(`${baseURL}/addProject`, { inputTitle }).then(response => {
-            const { projectTitle } = response;
-            return projectTitle;
-        });
-    }
+  constructor(baseURL) {
+    this.BASE_URL = baseURL
+  }
+  postProjectTitle(inputTitle) {
+    return axios.post(`${baseURL}/addProject`, { inputTitle }).then(response => {
+      const { projectTitle } = response
+      return projectTitle
+    })
+  }
 }

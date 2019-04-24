@@ -64,6 +64,7 @@ r(function() {
   }
 })
 
+// To display news category dropdown
 $(document).ready(function() {
   $("select").formSelect()
 })
