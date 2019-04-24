@@ -7,10 +7,10 @@ router.get("/news", (req, res, next) => {
   const query = req.query
   newsapi.v2
     .topHeadlines({
+      sources: "bbc-news, financial-times, nbc-news, cnn, the-new-york-times, the-hill",
       q: query.keyword,
-      category: query.category
-      // sources: "bbc-news, financial-times",
-      // country: "gb"
+      category: "general", // query.category
+      country: "us"
     })
     .then(response => {
       res.render("signedIn/news", { response })
@@ -24,9 +24,7 @@ router.get("/news", (req, res, next) => {
 router.get("/api/news", (req, res, next) => {
   newsapi.v2
     .topHeadlines({
-      sources: "bbc-news, financial-times, nbc-news, cnn, the-hill, cnbc, independent"
-      // category: "general",
-      // country: "us"
+      sources: "bbc-news, financial-times, nbc-news, cnn, the-new-york-times, the-hill"
     })
     .then(response => {
       res.json(response)

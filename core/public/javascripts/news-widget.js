@@ -36,7 +36,8 @@ getNews()
 */
 
 // news ticker
-$("#ticker").breakingNews({
+
+/* $("#ticker").breakingNews({
   source: {
     type: "json",
     url: "http://localhost:3000/api/news",
@@ -47,7 +48,7 @@ $("#ticker").breakingNews({
     seperator: '<span class="bn-seperator" style="background-image:url(img/cnn-logo.png);"></span>',
     errorMsg: "Json file not loaded. Please check the settings."
   }
-})
+}) */
 
 $("#ticker").breakingNews({
   effect: "typography"
@@ -119,7 +120,7 @@ $("#ticker").breakingNews({
   delayTimer: 4000,
 
   // animation speed
-  scrollSpeed: 2,
+  scrollSpeed: 20,
 
   // pause on hover
   stopOnHover: true
