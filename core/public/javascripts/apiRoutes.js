@@ -1,8 +1,5 @@
 const baseURL = 'http://localhost:3000';
 
-const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI(process.env.NEWSAPI_KEY);
-
 class DATAHandler {
     constructor(baseURL) {
         this.BASE_URL = baseURL;

@@ -23,6 +23,10 @@ router.get('/dashboard', authenticationCheck, (req, res, next) => {
     res.render('signedIn/dashboard');
 });
 
+router.get('/add-project', authenticationCheck, (req, res, next) => {
+    res.render('signedIn/add-project');
+});
+
 router.get('/project/:projectId', authenticationCheck, (req, res, next) => {
     const { projectId } = req.params;
     Project.find({ _id: projectId })
@@ -50,6 +54,18 @@ router.get('/view-project', authenticationCheck, (req, res, next) => {
         });
 });
 
+let inFormData;
+router.post('/api/addProject', authenticationCheck, (req, res, next) => {
+    const { inputTitle } = req.body;
+    return Project.create({ projectName: inputTitle, assignedTo: [req.user._id] })
+        .then(project => {
+            inFormData = res.json(project);
+            return inFormData;
+        })
+        .catch(err => {
+            console.error('Error while adding a new project', err);
+        });
+});
 router.get('/api/allProjectStatus', authenticationCheck, (req, res, next) => {
     // console.log('got here');
     // let userID = req.user._id;
@@ -61,19 +77,6 @@ router.get('/api/allProjectStatus', authenticationCheck, (req, res, next) => {
         .then(data => {
             console.log(data);
             return res.send(data);
-        });
-});
-
-let inFormData;
-router.post('/api/addProject', authenticationCheck, (req, res, next) => {
-    const { inputTitle } = req.body;
-    return Project.create({ projectName: inputTitle, assignedTo: [req.user._id] })
-        .then(project => {
-            inFormData = res.json(project);
-            return inFormData;
-        })
-        .catch(err => {
-            console.error('Error while adding a new project', err);
         });
 });
 
@@ -89,9 +92,6 @@ router.post('/api/addTask', authenticationCheck, (req, res, next) => {
     }).then(data => {
         Project.findOneAndUpdate({ _id: project }, { $push: { tasks: data.id } }).then({});
     });
-});
-router.get('/add-project', authenticationCheck, (req, res, next) => {
-    res.render('signedIn/add-project');
 });
 router.get('/api/project', (req, res, next) => {
     Project.find().then(data => res.json(data));
