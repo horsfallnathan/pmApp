@@ -1,0 +1,23 @@
+<section class="flexed-row">
+  <div class="banner-text">
+    <h1>Welcome {{User.name}}</h1>
+    <p>Here is a breakdown of your Projects...</p>
+  </div>
+  <div class="chart-box">
+    <div class="chart-wrap">
+
+      <canvas id="dashboardChart" width="100%" height="100%"></canvas>
+    </div>
+    <div class="input-field">
+      <select>
+        <option value="1" name="allProjects">All Projects</option>
+        <option value="2" name="projectStatus">Project Status</option>
+      </select>
+      <label>Sort By:</label>
+    </div>
+  </div>
+</section>
+
+
+{{!-- News ticker --}}
+<div id="news-div" class="news-div bn-fixed-bottom"></div>

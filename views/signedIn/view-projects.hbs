@@ -1,0 +1,53 @@
+<div class="page-head flexed-row flex-space-between">
+  <div class="page-title text-left width-60">
+    <h3>Your Current Projects</h3>
+  </div>
+  <div class="search-bar width-20">
+    <input type="text" name="searchProject" id="searchProject" placeholder="Start typing...">
+    <label for="searchProject">Search Project</label>
+  </div>
+</div>
+
+{{#each data}}
+<div class="project-List">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title activator">{{projectName}}
+        <i class="material-icons color-blue right">add_box</i></span>
+      <p><a href="/project/{{id}}">View Project</a></p>
+    </div>
+    <div class="card-reveal">
+      {{!-- {{#each data}} --}}
+      <span class="card-title grey-text text-darken-4">{{projectName}}<i class="material-icons right">close</i></span>
+      {{#each tasks}}
+      <div class="task-div no-bm grey-text text-darken-4 ">
+        {{#ifEquals status "Ongoing"}}
+        <span class="tb-border tb-padding-sm flexed-row flex-space-between">
+          <p class="">{{title}}</p><i class="material-icons right"
+            style="font-size:12px; margin-right: 7px; color:#3a506b">cached</i>
+        </span>
+      </div>
+      {{/ifEquals}}
+      {{#ifEquals status "Todo"}}
+      <span class="tb-border tb-padding-sm flexed-row flex-space-between">
+        <p class="">{{title}}</p><i class="material-icons right"
+          style="font-size:12px; margin-right: 7px; color:#3a506b">history</i>
+      </span>
+    </div>
+    {{/ifEquals}}
+    {{#ifEquals status "Completed"}}
+    <span class="tb-border tb-padding-sm flexed-row flex-space-between">
+      <p class="">{{title}}</p><i class="material-icons right"
+        style="font-size:12px; margin-right: 7px; color:#3a506b">check_circle_outline</i>
+    </span>
+  </div>
+  {{/ifEquals}}
+  {{/each}}
+</div>
+</div>
+</div>
+{{/each}}
+
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

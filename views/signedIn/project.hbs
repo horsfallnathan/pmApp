@@ -1,0 +1,32 @@
+<section class="flexed-row">
+  <div class="banner-text">
+    {{#each data}}
+    <h1>{{projectName}}</h1>
+    {{#each tasks}}
+    <p>Title: {{title}} Weight: {{weight}} Status: {{status}}</p>
+    {{/each}}
+    {{/each}}
+
+  </div>
+  <div class="chart-box">
+    <canvas id="projectChart" width="100%" height="100%"></canvas>
+  </div>
+</section>
+<div class="flexed-row">
+
+  {{#each data}}
+  {{#each tasks}}
+  <div class="card">
+    <div class="card-content ">
+      <span class="bt-border tb-padding-sm flexed-row flex-space-between">
+        <h5 class="">{{title}}</h5>
+        <div class="card-weight">{{weight}}</div>
+      </span>
+      <div class="task-text tb-padding">
+        <p>{{description}}</p>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  {{/each}}
+</div>
