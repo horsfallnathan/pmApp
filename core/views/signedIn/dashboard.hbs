@@ -5,9 +5,17 @@
   </div>
   <div class="chart-box">
     <canvas id="dashboardChart" width="100%" height="100%"></canvas>
+
+    <div class="input-field">
+      <select>
+        <option value="1" name="allProjects">All Projects</option>
+        <option value="2" name="projectStatus">Project Status</option>
+      </select>
+      <label>Sort By:</label>
+    </div>
   </div>
 </section>
 
 
 {{!-- News ticker --}}
-<div id="news-div"></div>
+<div id="news-div" class="news-div bn-fixed-bottom"></div>

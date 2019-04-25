@@ -1,23 +1,26 @@
-<h1>Your Current Projects</h1>
-<input type="text" name="searchProject" id="searchProject" placeholder="Start typing...">
-<label for="searchProject">Search Project</label>
-{{!-- <i class="material-icons prefix">search</i>
-<input type="text" id="autocomplete-input" class="autocomplete">
-<label for="autocomplete-input">Start typing...</label> --}}
+<div class="page-head flexed-row flex-space-between">
+  <div class="page-title text-left width-60">
+    <h3>Your Current Projects</h3>
+  </div>
+  <div class="search-bar width-20">
+    <input type="text" name="searchProject" id="searchProject" placeholder="Start typing...">
+    <label for="searchProject">Search Project</label>
+  </div>
+</div>
 
 {{#each data}}
 <div class="project-List">
   <div class="card">
     <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">{{projectName}}
-        <i class="material-icons right">add_box</i></span>
+      <span class="card-title activator">{{projectName}}
+        <i class="material-icons color-blue right">add_box</i></span>
       <p><a href="/project/{{id}}">View Project</a></p>
     </div>
     <div class="card-reveal">
       {{!-- {{#each data}} --}}
       <span class="card-title grey-text text-darken-4">{{projectName}}<i class="material-icons right">close</i></span>
       {{#each tasks}}
-      <p>{{title}}</p>
+      <p class="tb-margin tb-border">{{title}}</p>
       {{/each}}
       {{!-- {{/each}} --}}
     </div>

@@ -8,7 +8,7 @@ const printCharts = (label, perData) => {
             datasets: [
                 {
                     data: perData,
-                    backgroundColor: ['#ff8397', '#f38b4a', '#56d798']
+                    backgroundColor: ['#B9EF4C', '#85c800', '#537c00']
                 }
             ]
         },
@@ -70,9 +70,9 @@ function findTotalPercentage(weights) {
 // }
 
 const weights = {
+    Ongoing: [],
     Todo: [],
-    Completed: [],
-    Ongoing: []
+    Completed: []
 };
 function sortAndWeigh(project) {
     project
@@ -83,3 +83,7 @@ function sortAndWeigh(project) {
             });
         });
 }
+
+$(document).ready(function() {
+    $('select').formSelect();
+});
