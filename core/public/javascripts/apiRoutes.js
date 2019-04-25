@@ -5,11 +5,13 @@ class DATAHandler {
     }
     postProjectTitle(inputTitle) {
         return axios.post(`${baseURL}/api/addProject`, inputTitle).then(response => {
+            console.log(response.data);
             return response;
         });
     }
     postNewTask(formData) {
         return axios.post(`${baseURL}/api/addTask`, formData).then(response => {
+            console.log(response.data, ': post new task');
             return response;
         });
     }

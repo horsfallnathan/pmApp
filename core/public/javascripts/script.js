@@ -1,7 +1,9 @@
 // <div id="taskForm">
 // <form id="newTask" method="POST">
+
 const addNewTaskForm = `
 <form action="" id="newTask" method="POST">
+<div class="response">{{responseData}}</div>
 <input type="text" name="taskTitle" id="taskTitle">
 <label for="taskTitle">Task</label>
 <p>
@@ -22,6 +24,12 @@ const addNewTaskForm = `
     <span>Completed</span>
   </label>
 </p>
+<select>
+{{# each user}}
+<option value="{{this.username}}">{{}}</option>
+{{/each}}
+</select>
+<label>Assign a Team Member</label>
 <input type="text" name="assignedUser" id="assignedUser">
 <label for="assignedUser">Assign to Team Member</label>
 <textarea name="description" id="description" cols="30" rows="10">Description</textarea>
@@ -56,11 +64,14 @@ function r(f) {
 // r(function() {
 //     console.log('DOM Ready!');
 let currentProjectId;
+let responseData;
 document.getElementById('projectTitle').onsubmit = function(event) {
     const inputTitle = document.querySelectorAll('#projectName')[0].value;
     event.preventDefault();
     projectDATA.postProjectTitle({ inputTitle: inputTitle }).then(response => {
+        responseData = response.data;
         currentProjectId = response.data._id;
+        console.log(currentProjectId, ':from script.js', response);
     });
     document.querySelectorAll('#newAddTask')[0].classList.toggle('disabled');
     document.querySelector('button[name="saveProjectTitle"]').style.display = 'none';
@@ -69,6 +80,7 @@ document.getElementById('projectTitle').onsubmit = function(event) {
 document.getElementById('newAddTask').onclick = function() {
     document.getElementById('newAddTask').style.display = 'none';
     document.querySelector('#formContainer').innerHTML = addNewTaskForm;
+    // document.querySelector('.response').innerHTML = 'test';
     document.getElementById('newTask').onsubmit = function(event) {
         event.preventDefault();
         let datalink = document.querySelector('#newTask').elements;
@@ -92,6 +104,19 @@ document.getElementById('newAddTask').onclick = function() {
         document.getElementById('saveProject').classList.remove('display-hide');
     };
 };
+console.log(responseData);
+// Autocomplete in Search
+
+// $(function() {
+//     $('input.autocomplete').autocomplete({
+//         data: responseData,
+//         limit: 7, // The max amount of results that can be shown at once. Default: Infinity.
+//         onAutocomplete: function(val) {
+//             // Callback function when value is autcompleted.
+//         },
+//         minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
+//     });
+// });
 
 // To display news category dropdown
 $(document).ready(function() {

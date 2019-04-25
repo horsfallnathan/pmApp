@@ -22,19 +22,18 @@ const authenticationCheck = (req, res, next) => {
 router.get('/dashboard', authenticationCheck, (req, res, next) => {
     res.render('signedIn/dashboard');
 });
-router.get(`/project/:projectId`, authenticationCheck, (req, res, next) => {
-    const { projectId } = req.params;
-    Project.find({ id: projectId }).then(data => {
-        res.render('signedIn/project', data);
-    });
-});
 
-router.get('/api/allProjectStatus', authenticationCheck, (req, res, next) => {
-    console.log('got here');
-    let userID = req.user._id;
-    return Task.find({ assignedTo: userID }).then(data => {
-        return res.json(data);
-    });
+router.get('/project/:projectId', authenticationCheck, (req, res, next) => {
+    const { projectId } = req.params;
+    Project.find({ _id: projectId })
+        .populate({
+            path: 'tasks',
+            model: 'Task'
+        })
+        .then(data => {
+            console.log({ data });
+            res.render('signedIn/project', { data });
+        });
 });
 
 router.get('/view-project', authenticationCheck, (req, res, next) => {
@@ -46,7 +45,22 @@ router.get('/view-project', authenticationCheck, (req, res, next) => {
             model: 'Task'
         })
         .then(data => {
+            console.log({ data });
             res.render('signedIn/view-projects', { data });
+        });
+});
+
+router.get('/api/allProjectStatus', authenticationCheck, (req, res, next) => {
+    // console.log('got here');
+    // let userID = req.user._id;
+    return Project.find()
+        .populate({
+            path: 'tasks',
+            model: 'Task'
+        })
+        .then(data => {
+            console.log(data);
+            return res.send(data);
         });
 });
 

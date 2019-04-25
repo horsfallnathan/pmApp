@@ -1,34 +1,28 @@
 const ctx = document.getElementById('dashboardChart').getContext('2d');
-const printCharts = () => {
+const printCharts = (label, perData) => {
+    console.log(perData);
     const myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: ['Todo', 'Ongoing', 'Completed'],
             datasets: [
                 {
-                    data: [10, 20, 30]
+                    data: perData,
+                    backgroundColor: ['#ff8397', '#f38b4a', '#56d798']
                 }
             ]
+        },
+        options: {
+            legend: {
+                display: true,
+                labels: {
+                    // fontColor: 'rgb(255, 99, 132)'
+                }
+            }
         }
     });
 };
-printCharts();
 
-// const getDashboardData = ({ _id }) => {};
-
-// For Autocomplete
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     var elems = document.querySelectorAll('.autocomplete');
-//     data = axios.get(`/getUsers`).then(data => {
-//         return data;
-//     });
-//     console.log(data);
-//     var instances = M.Autocomplete.init(elems, data);
-// });
-
-// Data for Chart
-// let tasksData = [];
 const getChartData = () => {
     console.log(`starting axios request`);
     axios
@@ -37,6 +31,10 @@ const getChartData = () => {
             const tasksData = response.data;
             console.log(tasksData);
             sortAndWeigh(tasksData);
+            findTotalPercentage(weights);
+            console.log(perData);
+            let label = ['Todo', 'Ongoing', 'Completed'];
+            printCharts(label, ...perData);
         })
         .catch(err => {
             console.log(err);
@@ -46,53 +44,42 @@ const getChartData = () => {
 getChartData();
 
 // Data calculation Functions
+const perData = [];
 
-function findPercentage(array) {
-    let sum = array.reduce((a, b) => a + b);
-    console.log(array.map(el => ((el / sum) * 100).toFixed(2)));
-}
-
-// let projectIdArray = [];
-// let taskArray = [];
-// let ongoingArray = [];
-// let todoArray = [];
-// let completedArray = [];
-// function sortAndWeigh(array) {
-//     array.map((el, i) => {
-//         if (projectIdArray.includes(el.project)) {
-//         } else {
-//             projectIdArray.push(el.project);
-//             taskArray[i] = [];
-//             ongoingArray[i] = [];
-//             todoArray[i] = [];
-//             completedArray[i] = [];
-//         }
+// Use for individual Projects!!!!!!!!!!!!
+// function findPercentage(weights) {
+//     let a = Object.values(weights);
+//     a.map(el => el).forEach(el => {
+//         let sum = el.reduce((a, b) => a + b, 0);
+//         let b = el.map(el => ((el / sum) * 100).toFixed(2));
+//         console.log(sum);
+//         perData.push(b);
 //     });
-//     for (let i = 0; i < projectIdArray.length; i++) {
-//         array.map(el => {
-//             console.log(el.status);
-//             if (el.name === projectIdArray[i] && el.status == 'Ongoing') {
-//                 ongoingArray[i].push(el.weight);
-//                 console.log('got here');
-//             }
-//             if (el.name === projectIdArray[i] && el.status == 'Todo') {
-//                 todoArray[i].push(el.weight);
-//             }
-//             if (el.name === projectIdArray[i] && el.status == 'Completed') {
-//                 completedArray[i].push(el.weight);
-//             }
-//         });
-//     }
-//     console.log(
-//         projectIdArray,
-//         'projectIdArray',
-//         taskArray,
-//         ':taskArray',
-//         ongoingArray,
-//         ':ongoingArray',
-//         todoArray,
-//         ':todoArray',
-//         completedArray,
-//         ':completedArray'
-//     );
 // }
+
+function findTotalPercentage(weights) {
+    let a = Object.values(weights);
+    let sum = [];
+    a.map(el => el).forEach(el => {
+        sum.push(el.reduce((a, b) => a + b, 0));
+    });
+    // console.log(sum);
+    let sum2 = sum.reduce((a, b) => a + b, 0);
+    perData.push(sum.map(el => (el / sum2) * 100));
+}
+// }
+
+const weights = {
+    Todo: [],
+    Completed: [],
+    Ongoing: []
+};
+function sortAndWeigh(project) {
+    project
+        .map(el => el.tasks)
+        .forEach(tasks => {
+            tasks.forEach(task => {
+                weights[task.status].push(task.weight);
+            });
+        });
+}
