@@ -7,17 +7,30 @@ router.get("/news", (req, res, next) => {
   const query = req.query
   newsapi.v2
     .topHeadlines({
+      sources: "bbc-news, financial-times, nbc-news, cnn, the-new-york-times, the-hill",
       q: query.keyword,
-      category: query.category,
-      language: "en"
-      // sources: "bbc-news, financial-times",
-      // country: "uk"
+      category: "general", // query.category
+      country: "us"
     })
     .then(response => {
       res.render("signedIn/news", { response })
     })
     .catch(err => {
       console.error("Error fetching news", err)
+    })
+})
+
+// NewsAPI for the widget
+router.get("/api/news", (req, res, next) => {
+  newsapi.v2
+    .topHeadlines({
+      sources: "bbc-news, financial-times, nbc-news, cnn, the-new-york-times, the-hill"
+    })
+    .then(response => {
+      res.json(response)
+    })
+    .catch(err => {
+      console.error("Could not fetch news", err)
     })
 })
 
