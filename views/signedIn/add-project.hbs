@@ -1,0 +1,19 @@
+<h1>Project Title</h1>
+{{#each user}}
+{{user}}
+{{/each}}
+<div class="flexed-row">
+  <form action="" method="POST" id="projectTitle">
+    <input type="text" name="projectName" required id="projectName">
+    <label for="projectName">Project Title</label>
+    </button>
+    <button class="btn" type="submit" name="saveProjectTitle">Save Project Title</button>
+  </form>
+  <button id="newAddTask" class="btn disabled">Add Task</button>
+</div>
+<div class="created-tasks">
+</div>
+<div id="formContainer">
+
+</div>
+<button id="saveProject" class="btn display-hide">Save Project</button>

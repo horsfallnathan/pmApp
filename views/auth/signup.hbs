@@ -1,0 +1,53 @@
+<div class="signup-container">
+  <div class="signup-img">
+    {{!-- <div class="image">
+
+    </div> --}}
+  </div>
+  <form action="/auth/signup" method="POST" id="form-container">
+    <div class="name-container">
+      <input id="firstNameInput" type="text" name="firstName" placeholder="First Name">
+
+      <br>
+
+      <input id="lastNameInput" type="text" name="lastName" placeholder="Last Name">
+    </div>
+
+    <br>
+
+    <div class="email-container">
+      <input id="emailInput" type="email" required name="email" placeholder="Enter your email">
+    </div>
+
+    <br>
+
+    <div class="username-container">
+      <input id="usernameInput" type="text" required name="username" placeholder="Choose a username">
+    </div>
+
+    <br>
+
+    <div class="password-container">
+      <input id="password" type="password" required name="password" placeholder="Choose a password">
+
+      <br>
+
+      <input id="password-confirm" type="password" required name="passwordConfirm" placeholder="Confirm your password">
+    </div>
+
+    <br>
+
+    {{#if message }}
+    <div class="error-message">{{ message }}</div>
+    {{/if}}
+
+    <br>
+
+    <button>Create account</button>
+
+    <p class="account-message">
+      Do you already have an account?
+      <a href="/auth/login">Login</a>
+    </p>
+  </form>
+</div>
