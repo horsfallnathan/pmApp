@@ -8,9 +8,9 @@ router.get("/news", (req, res, next) => {
   newsapi.v2
     .topHeadlines({
       sources: "bbc-news, financial-times, nbc-news, cnn, the-new-york-times, the-hill",
-      q: query.keyword,
-      category: "general", // query.category
-      country: "us"
+      q: query.keyword
+      // category: "general", // query.category
+      // country: "us"
     })
     .then(response => {
       res.render("signedIn/news", { response })
