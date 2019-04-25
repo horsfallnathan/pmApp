@@ -10,7 +10,7 @@ passport.use(
       callbackURL:
         process.env.NODE_ENV === "dev"
           ? "http://localhost:3000/auth/github/callback"
-          : window.location.protocol + "//" + window.location.host + "/auth/linkedin/callback"
+          : "https://big-dog.herokuapp.com/auth/github/callback"
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile)

@@ -9,8 +9,8 @@ passport.use(
       clientSecret: process.env.LI_CLIENT_SECRET,
       callbackURL:
         process.env.NODE_ENV === "dev"
-          ? "http://localhost:3000/auth/linkedin/callback"
-          : window.location.protocol + "//" + window.location.host + "/auth/linkedin/callback"
+          ? "http://localhost:3000/auth/github/callback"
+          : "https://big-dog.herokuapp.com/auth/github/callback"
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile)
