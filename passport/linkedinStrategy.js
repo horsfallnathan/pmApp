@@ -7,7 +7,7 @@ passport.use(
     {
       clientID: process.env.LI_CLIENT_ID,
       clientSecret: process.env.LI_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/linkedin/callback"
+      callbackURL: window.location.protocol + "//" + window.location.host + "/auth/linkedin/callback"
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile)

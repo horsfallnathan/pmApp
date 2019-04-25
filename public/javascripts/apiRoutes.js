@@ -1,5 +1,6 @@
 const baseURL = window.location.protocol + "//" + window.location.host
 console.log(baseURL)
+
 class DATAHandler {
   constructor(baseURL) {
     this.BASE_URL = baseURL
