@@ -292,4 +292,11 @@ nav ul a:last-child {
     @include dsk() {
         margin-top: 10rem;
     }
+    .tb-margin-sm {
+        margin: 1rem;
+    }
+
+    .tb-border {
+        border-top: 1px solid;
+    }
 }

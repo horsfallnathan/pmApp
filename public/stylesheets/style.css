@@ -232,5 +232,9 @@ nav ul a:last-child {
   @media (min-width: 992px) {
     .banner-flex {
       margin-top: 10rem; } }
+  .banner-flex .tb-margin-sm {
+    margin: 1rem; }
+  .banner-flex .tb-border {
+    border-top: 1px solid; }
 
 /*# sourceMappingURL=style.css.map */

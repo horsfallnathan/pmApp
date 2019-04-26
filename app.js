@@ -9,16 +9,15 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 
-hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
-    return arg1 == arg2 ? options.fn(this) : options.inverse(this);
-});
-
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 
+const mongoConnectURI =
+    process.env.NODE_ENV === 'dev' ? 'mongodb://localhost/core' : process.env.MONGODB_URI;
+
 mongoose
-    .connect('mongodb://localhost/core', { useNewUrlParser: true })
+    .connect(mongoConnectURI, { useNewUrlParser: true })
     .then(x => {
         console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
     })
@@ -36,6 +35,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//hbs helper
+hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+    return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+});
 
 // Express View engine setup
 

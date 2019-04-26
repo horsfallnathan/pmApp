@@ -7,7 +7,10 @@ passport.use(
     {
       clientID: process.env.GH_CLIENT_ID,
       clientSecret: process.env.GH_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/github/callback"
+      callbackURL:
+        process.env.NODE_ENV === "dev"
+          ? "http://localhost:3000/auth/github/callback"
+          : "https://big-dog.herokuapp.com/auth/github/callback"
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile)
