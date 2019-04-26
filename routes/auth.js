@@ -59,7 +59,8 @@ router.post("/signup", (req, res, next) => {
       .then(user => {
         // log in a newly signed up user
         req.login(user, () => {
-          res.redirect("/dashboard")
+          //res.redirect("/auth/personalize")
+          res.render("auth/signup")
         })
       })
       .catch(err => {
@@ -89,6 +90,18 @@ router.get(
 router.get("/logout", (req, res) => {
   req.logout()
   res.redirect("/")
+})
+
+// geo + industry select
+router.get("/personalize", (req, res) => {
+  res.render("auth/personalize", { layout: "welcome-layout" })
+})
+
+router.post("/personalize", (req, res, next) => {
+  const { country, industry } = req.body
+  console.log("this is signup country", country)
+  console.log("this is signup industry", industry)
+  res.redirect("/dashboard")
 })
 
 module.exports = router
