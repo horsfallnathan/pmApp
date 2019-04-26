@@ -138,9 +138,9 @@ nav a {
     top: 0;
     left: 0;
 }
-// .brand-logo {
-//     margin: 0 15px;
-// }
+.brand-logo {
+    font-style: Bold;
+}
 .welcome-nav {
     display: flex;
     justify-content: space-between;
@@ -288,15 +288,15 @@ nav ul a:last-child {
     color: #002040;
 }
 .banner-flex {
-    margin-top: 0;
+    padding-top: 0;
     @include dsk() {
-        margin-top: 10rem;
+        padding-top: 2rem;
     }
-    .tb-margin-sm {
-        margin: 1rem;
-    }
+}
+.tb-margin-sm {
+    margin: 1rem;
+}
 
-    .tb-border {
-        border-top: 1px solid;
-    }
+.tb-border {
+    border-top: 1px solid;
 }
