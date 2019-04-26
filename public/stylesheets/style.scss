@@ -55,6 +55,15 @@ select,
 button {
     color: #6fffe6;
 }
+/* label focus color */
+.dark-form input[type='text']:focus + label {
+    color: #002040 !important;
+}
+/* label underline focus color */
+.dark-form input[type='text']:focus {
+    border-bottom: 1px solid #002040 !important;
+    box-shadow: 0 1px 0 0 #002040 !important;
+}
 a {
     color: inherit;
 }
@@ -165,7 +174,8 @@ nav ul a:last-child {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 500px;
+    // max-width: 500px;
+    max-height: 60vh;
     padding: 1.5rem;
     @include dsk() {
         max-width: 50%;
@@ -201,12 +211,21 @@ nav ul a:last-child {
     }
 }
 .width-60 {
-    width: 60%;
+    width: 100%;
     @include tab() {
         width: 50%;
     }
     @include dsk() {
         width: 60%;
+    }
+}
+.width-50 {
+    width: 100%;
+    @include tab() {
+        width: 50%;
+    }
+    @include dsk() {
+        width: 50%;
     }
 }
 .text-left {
@@ -255,4 +274,22 @@ nav ul a:last-child {
     justify-content: center;
     align-items: center;
     color: #002040;
+}
+.task-buttons a {
+    background-color: #dcdcdc;
+    color: #002040;
+    padding: 0.5rem;
+}
+.update-button {
+    background-color: #dcdcdc;
+    cursor: pointer;
+    display: inline;
+    padding: 7px;
+    color: #002040;
+}
+.banner-flex {
+    margin-top: 0;
+    @include dsk() {
+        margin-top: 10rem;
+    }
 }

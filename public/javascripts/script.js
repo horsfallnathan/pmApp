@@ -55,14 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const projectDATA = new DATAHandler('http://localhost:3000');
 
-//Function to check if DOM is loaded
-function r(f) {
-    /in/.test(document.readyState) ? setTimeout('r(' + f + ')', 9) : f();
-}
-
-// Call DOM checking function and on success do get element...
-// r(function() {
-//     console.log('DOM Ready!');
 let currentProjectId;
 let responseData;
 document.getElementById('projectTitle').onsubmit = function(event) {
@@ -84,11 +76,17 @@ document.getElementById('newAddTask').onclick = function() {
     document.getElementById('newTask').onsubmit = function(event) {
         event.preventDefault();
         let datalink = document.querySelector('#newTask').elements;
+        let weightToSave = 1;
+        if (datalink.weight.value < 1) {
+            weightToSave = 1;
+        } else {
+            weightToSave = datalink.weight.value;
+        }
         let formData = {
             taskTitle: datalink.taskTitle.value,
             assignedUser: datalink.assignedUser.value,
             description: datalink.description.value,
-            weight: datalink.weight.value,
+            weight: weightToSave,
             status: datalink.status.value,
             project: currentProjectId
         };
@@ -104,19 +102,6 @@ document.getElementById('newAddTask').onclick = function() {
         document.getElementById('saveProject').classList.remove('display-hide');
     };
 };
-console.log(responseData);
-// Autocomplete in Search
-
-// $(function() {
-//     $('input.autocomplete').autocomplete({
-//         data: responseData,
-//         limit: 7, // The max amount of results that can be shown at once. Default: Infinity.
-//         onAutocomplete: function(val) {
-//             // Callback function when value is autcompleted.
-//         },
-//         minLength: 1 // The minimum length of the input for the autocomplete to start. Default: 1.
-//     });
-// });
 
 // To display news category dropdown
 $(document).ready(function() {

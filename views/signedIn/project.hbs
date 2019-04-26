@@ -2,9 +2,6 @@
   <div class="banner-text">
     {{#each data}}
     <h1>{{projectName}}</h1>
-    {{#each tasks}}
-    <p>Title: {{title}} Weight: {{weight}} Status: {{status}}</p>
-    {{/each}}
     {{/each}}
 
   </div>
@@ -16,17 +13,45 @@
 
   {{#each data}}
   {{#each tasks}}
-  <div class="card">
-    <div class="card-content ">
+  <div class="card width-50">
+    <div class="card-content  lr-margin">
       <span class="bt-border tb-padding-sm flexed-row flex-space-between">
         <h5 class="">{{title}}</h5>
         <div class="card-weight">{{weight}}</div>
       </span>
-      <div class="task-text tb-padding">
+      <div class="task-text bt-border tb-padding">
         <p>{{description}}</p>
+        <p>{{_id}}</p>
       </div>
+      <div class="flexed-row flex-space-between text-left">
+        <div class="task-choices">
+          {{#ifEquals status "Ongoing"}}
+          <i class="material-icons" style="font-size:1.5rem; color:#ff9945">cached</i>
+        </div>
+        {{/ifEquals}}
+        {{#ifEquals status "Todo"}}
+        <i class="material-icons" style="font-size:1.5rem; color:#ca0000">history</i>
+      </div>
+      {{/ifEquals}}
+      {{#ifEquals status "Completed"}}
+      <i class="material-icons" style="font-size:1.5rem; color:#85c800">check_circle_outline</i>
+    </div>
+    {{/ifEquals}}
+    <div class="task-buttons">
+      <span class="activator update-button">Update Task</span>
+      <a href="/updateTask/{{_id}}">Delete Task</a>
     </div>
   </div>
-  {{/each}}
-  {{/each}}
 </div>
+<div class="card-reveal">
+  <form class="dark-form text-left">
+    <input class="dark-form" type="text" name="taskTitle" placeholder="{{title}}"></input>
+    <textarea class="dark-form" style="color: #002040" type="text" name="description" cols="30"
+      rows="10">{{description}}</textarea>
+    <input type="number" class="dark-form" placeholder="{{weight}}"></input>
+    <a href="" style="color: #002040; border:1px solid #002040; padding:0.5rem; margin-top:5rem">Update Task</a>
+  </form>
+</div>
+</div>
+{{/each}}
+{{/each}}

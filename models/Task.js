@@ -11,7 +11,10 @@ const taskSchema = new Schema(
                 ref: 'User'
             }
         ],
-        weight: Number,
+        weight: {
+            type: Number,
+            default: 1
+        },
         status: {
             type: String,
             enum: ['Todo', 'Ongoing', 'Completed']

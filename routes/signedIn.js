@@ -39,6 +39,12 @@ router.get('/project/:projectId', authenticationCheck, (req, res, next) => {
             res.render('signedIn/project', { data });
         });
 });
+router.get('/deleteTask/:taskId', authenticationCheck, (req, res, next) => {
+    const { taskId } = req.params;
+    Task.findOneAndDelete({ _id: taskId }).then(data => {
+        res.redirect('/view-project');
+    });
+});
 
 router.get('/view-project', authenticationCheck, (req, res, next) => {
     let userID = req.user._id;

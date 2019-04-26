@@ -54,10 +54,11 @@ const getChartData = () => {
             findTotalPercentage(weights);
             eachProjectData(tasksData);
             findEachTotalPercentage(arr);
+            arraySum(arr);
             // console.log(perData);
             console.log(arr, ':Arrrrrrr hreree');
             console.log(perData2, ':perData2222222 hreree');
-            console.log(perData, perData2);
+            // console.log(perData, perData2);
 
             console.log(weights, ':weights hreree');
             let label = ['Todo', 'Ongoing', 'Completed'];
@@ -72,17 +73,31 @@ getChartData();
 
 // Data calculation Functions
 const perData = [];
-
+let perData2 = [];
 // Use for individual Projects!!!!!!!!!!!!
-// function findPercentage(weights) {
-//     let a = Object.values(weights);
-//     a.map(el => el).forEach(el => {
-//         let sum = el.reduce((a, b) => a + b, 0);
-//         let b = el.map(el => ((el / sum) * 100).toFixed(2));
-//         console.log(sum);
-//         perData.push(b);
-//     });
-// }
+function findEachTotalPercentage(arr) {
+    console.log(arr);
+    arr.map(el => el).forEach(function(el) {
+        let sum = el.map(el => el).reduce((a, b) => a + b);
+        let b = el.map(el => (el / sum) * 100);
+        console.log(sum, 'summmmmmmmm');
+        perData2.push(b);
+    });
+}
+
+function arraySum(i) {
+    console.log('started');
+    var sum = []; // missing var added
+    for (var a = 0; a < i.length; a++) {
+        // missing var added
+        if (typeof i[a] == 'number') {
+            sum.push(i[a]);
+        } else if (i[a] instanceof Array) {
+            sum.push(arraySum(i[a]));
+        }
+    }
+    console.log(sum, 'sumoooooo');
+}
 
 function findTotalPercentage(weights) {
     let a = Object.values(weights);
@@ -95,14 +110,19 @@ function findTotalPercentage(weights) {
     perData.push(sum.map(el => (el / sum2) * 100));
 }
 
-let perData2 = [];
-
-function findEachTotalPercentage(arr) {
-    return arr.map(arr => {
-        let sum = arr[0][0] + arr[1][0] + arr[2][0];
-        perData2.push(arr.map(arr => (arr[0] / sum) * 100));
-    });
-}
+// function findEachTotalPercentage(arr) {
+//     let sum = [];
+//     arr.map(el => el).forEach(el => {
+//         sum.push(el.reduce((a, b) => a + b, 0));
+//     });
+//     console.log(sum, 'summmmmmm');
+//     // let sum2 = sum.reduce((a, b) => a + b, 0);
+//     // perData2.push(sum.map(el => (el / sum2) * 100));
+//     // return arr.map(arr => {
+//     //     let sum = arr[0][0] + arr[1][0] + arr[2][0];
+//     //     perData2.push(arr.map(arr => (arr[0] / sum) * 100));
+//     // });
+// }
 
 // }
 
